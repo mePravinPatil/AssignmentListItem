@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(184, 180, 180);
+}
+
+div {
+    display: inline-flex;
+    flex-direction: row;
+    border : 1px solid black;
+    background-color: white;
+    ;
+}
