@@ -5,11 +5,11 @@ import Label from './Components/Label';
 
 function App() {
   return (
-    <div>
+    <>
       <Image />
       <Label />
       <Icon />
-    </div>
+    </>
   );
 }
 
