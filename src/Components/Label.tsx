@@ -1,15 +1,15 @@
 import { useState } from "react";
-import StyledLabel from "./StyledComponents/StyledLabel";
+import {Wrapper, StyledLabelH3, StyledLabelP} from "./StyledComponents/StyledLabel";
 
 function Label() {
     const [title, setTitle] = useState('List Item Title');
-    const [subtitle, setSubTitle] = useState('List Item subtitle');
+    const [subtitle, setSubTitle] = useState('List Item Title subtitle');
 
     return (
-        <StyledLabel>
-            <h3 onClick={() => setTitle('NewTitle')}> {title} </h3>
-            <p onClick={() => setSubTitle('NewSubTitle')}> {subtitle}</p>
-        </StyledLabel>
+        <Wrapper>
+            <StyledLabelH3 onClick={() => setTitle('NewTitle')}> {title} </StyledLabelH3>
+            <StyledLabelP onClick={() => setSubTitle('NewSubTitle')}> {subtitle}</StyledLabelP>
+        </Wrapper>
     )
 }
 
