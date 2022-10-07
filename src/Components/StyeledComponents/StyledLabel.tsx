@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-const StyledLabel = styled.h3`
-margin : 10px;
-padding : 10px;
+export const Wrapper = styled.div`
+display : flex;
+flex-direction : column;
+border: none;
 `
 
-const styledLabel = styled.p`
-margin : 10px;
-padding : 10px;
+export const StyledLabelH3 = styled.h3`
+border : none;
+margin : 20px 40px 2.5px 0px;
 `
 
-export default StyledLabel;
+export const StyledLabelP = styled.p`
+border : none;
+margin : 0px 40px 10px 0px;
+`
