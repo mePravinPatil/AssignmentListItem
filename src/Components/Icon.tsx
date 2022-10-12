@@ -3,7 +3,7 @@ import StyledIcon from './StyledComponents/StyledIcon';
 
 function Icon () {
     return (
-        <StyledIcon>
+        <StyledIcon id='icon'>
             <MailOutlineIcon />
         </StyledIcon>
      )
