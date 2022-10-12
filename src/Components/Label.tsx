@@ -1,9 +1,15 @@
 import { useState } from "react";
 import {Wrapper, StyledLabelH3, StyledLabelP} from "./StyledComponents/StyledLabel";
 
-function Label() {
-    const [title, setTitle] = useState('List Item Title');
-    const [subtitle, setSubTitle] = useState('List Item Title subtitle');
+type LabelProps = {
+    title : string,
+    subtitle : string,
+}
+
+function Label(props : LabelProps) {
+    
+    const [title, setTitle] = useState(props.title);
+    const [subtitle, setSubTitle] = useState(props.subtitle);
 
     return (
         <Wrapper>
