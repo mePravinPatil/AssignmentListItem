@@ -15,11 +15,11 @@ function Label(props: LabelProps) {
         <Wrapper>
             <StyledLabelH3
                 onClick={() => setTitle('NewTitle')}
-                id ='clickTitle'> {title}
+                data-testid ='clickTitle'> {title}
             </StyledLabelH3>
             <StyledLabelP
                 onClick={() => setSubTitle('NewSubTitle')}
-                id='clickSubTitle'> {subtitle}
+                data-testid='clickSubTitle'> {subtitle}
             </StyledLabelP>
         </Wrapper>
     )
