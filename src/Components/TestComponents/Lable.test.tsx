@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Label from '../Label';
 
 describe('The Lable component', () => {
@@ -14,9 +14,17 @@ describe('The Lable component', () => {
         expect(testSubTitle).toBeInTheDocument();
     })
 
-    // test('title event click', () => {
-    //     render(<Label title='List Item Title' subtitle='List Item Title subtitle' />)
-    //     const click = screen.getByTestId("clickTitle");
-    //     expect(click).toBeInTheDocument();
-    //     });
+    test("Title change event", () => {
+        render(<Label title='List Item Title' subtitle='List Item Title subtitle' />);
+        const changeBtn = screen.getByTestId("clickTitle");
+        fireEvent.click(changeBtn);
+        expect(changeBtn).toBeTruthy();
     });
+
+    test("SubTitle change event", () => {
+        render(<Label title='List Item Title' subtitle='List Item Title subtitle' />);
+        const changeBtn = screen.getByTestId("clickSubTitle");
+        fireEvent.click(changeBtn);
+        expect(changeBtn).toBeTruthy();
+    });
+});
