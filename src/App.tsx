@@ -1,7 +1,5 @@
 import "./App.css";
-import Image from "./Components/Image/Image";
-import Icon from "./Components/Icon/Icon";
-import Label from "./Components/Label/Label";
+import { Image, Icon, Label } from "./Components";
 
 const App = () => {
   const information: any = [
