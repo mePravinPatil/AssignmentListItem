@@ -1,27 +1,23 @@
 import {
-  Wrapper,
-  StyledLabelH3,
-  StyledLabelP,
-} from "./StyledLabel";
+  StyledLabel,
+} from "./Label.style";
 
  export type LabelProps = {
   /**
    * we are using as title
    */
-  title: string;
+  text: string;
   /**
    * we are using as subtitle
    */
-  subtitle: string;
-  
+  isTitle: boolean;
+
 };
 
-const Label = ({ title, subtitle }: LabelProps) => {
+const Label = ({ text, isTitle }: LabelProps) => {
   return (
-    <Wrapper>
-      <StyledLabelH3 > {title}</StyledLabelH3>
-      <StyledLabelP > {subtitle}</StyledLabelP>
-    </Wrapper>
+      <StyledLabel isTitle={isTitle}> {text}</StyledLabel>
+ 
   );
 }
 
