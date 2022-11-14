@@ -1,17 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { LabelProps } from './Label';
+interface IsTitle {
+    isTitle: LabelProps['isTitle'];
+}
 
-export const Wrapper = styled.div`
-display : flex;
-flex-direction : column;
-border: none;
-`
 
-export const StyledLabelH3 = styled.h3`
-border : none;
-margin : 20px 40px 2.5px 0px;
-`
+export const getTitleProperty = (isTitle:boolean) => {
+    if(isTitle){
+        return css`
+            border : none;
+            margin : 10px 0 0 0;
+            font-size: 20px;
+            font-weight : bold;
+        `;
+    }else{
+        return css`
+            border : none;
+            margin : 5px 0 0 0;
+        `;
+    }
+}
 
-export const StyledLabelP = styled.p`
-border : none;
-margin : 0px 40px 10px 0px;
+export const StyledLabel = styled.div<IsTitle>`
+${({isTitle})=>getTitleProperty(isTitle)};
 `
