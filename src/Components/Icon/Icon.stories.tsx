@@ -7,4 +7,4 @@ export default {
 } as Meta<typeof Icon>
 
 
-export const Default = () => <Icon />
+export const Default = () => <Icon iconname='fa-envelope'/>
