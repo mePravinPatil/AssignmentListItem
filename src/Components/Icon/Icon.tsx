@@ -1,26 +1,20 @@
-import styled, { css } from 'styled-components';
-import { LabelProps } from './Label';
-interface IsTitle {
-    isTitle: LabelProps['isTitle'];
-}
+import "font-awesome/css/font-awesome.min.css";
+import StyledIcon from "./Icon.style";
 
+type IconProp = {
+    /**
+   * we are using it for Icon classname
+   */
+  iconname?: string;
+};
 
-export const getTitleProperty = (isTitle:boolean) => {
-    if(isTitle){
-        return css`
-            border : none;
-            margin : 10px 0 0 0;
-            font-size: 20px;
-            font-weight : bold;
-        `;
-    }else{
-        return css`
-            border : none;
-            margin : 5px 0 0 0;
-        `;
-    }
-}
+const Icon = ({iconname}: IconProp) => {
+  
+  return (
+    <StyledIcon id="icon">
+      <i className={iconname !== ''? iconname : 'fa-solid fa-envelope'}></i>
+    </StyledIcon>
+  );
+};
 
-export const StyledLabel = styled.div<IsTitle>`
-${({isTitle})=>getTitleProperty(isTitle)};
-`
+export default Icon;
