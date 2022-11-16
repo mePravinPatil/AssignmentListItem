@@ -11,10 +11,9 @@ export type LabelProps = {
   isTitle: boolean;
 };
 
-const Label = ({ text, isTitle }: LabelProps) => {
-  let newtext = "Title is not Available";
+const Label = ({ text='Title is not Available', isTitle}: LabelProps) => {
   return (
-    <StyledLabel isTitle={isTitle}> {text !== "" ? text : newtext}</StyledLabel>
+    <StyledLabel isTitle={isTitle}> {text}</StyledLabel>
   );
 };
 
