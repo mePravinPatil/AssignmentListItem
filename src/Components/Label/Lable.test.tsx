@@ -3,20 +3,20 @@ import Label from "./Label";
 
 describe("The Label component", () => {
   test("Title contains correct value", () => {
-    const onClick = jest.fn();
-    render(
-      <Label title="List Item Title" subtitle="List Item Title subtitle" />
-    );
+    render(<Label text="List Item Title" isTitle={true} />);
     const testTitle = screen.getByText("List Item Title");
     expect(testTitle).toBeInTheDocument();
   });
 
   test("Subtitle contains correct value", () => {
-    const onClick = jest.fn();
-    render(
-      <Label title="List Item Title" subtitle="List Item Title subtitle" />
-    );
-    const testSubTitle = screen.getByText("List Item Title subtitle");
+    render(<Label text="List Item Title" isTitle={false} />);
+    const testSubTitle = screen.getByText("List Item Title");
+    expect(testSubTitle).toBeInTheDocument();
+  });
+
+  test("Title contains default value when props is not present for Text", () => {
+    render(<Label isTitle />);
+    const testSubTitle = screen.getByText("Title is not Available");
     expect(testSubTitle).toBeInTheDocument();
   });
 });
