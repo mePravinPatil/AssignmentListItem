@@ -9,8 +9,8 @@ describe("The Label component", () => {
   });
 
   test("Subtitle contains correct value", () => {
-    render(<Label text="List Item Title" isTitle={false} />);
-    const testSubTitle = screen.getByText("List Item Title");
+    render(<Label text="List Item Title subtitle" isTitle={false} />);
+    const testSubTitle = screen.getByText("List Item Title subtitle");
     expect(testSubTitle).toBeInTheDocument();
   });
 
