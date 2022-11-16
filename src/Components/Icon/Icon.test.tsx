@@ -14,4 +14,10 @@ test('Icon contains correct value in Props', () => {
     expect(testIcon).toHaveClass('fa-solid fa-envelope');
   });
 
+  test('Icon contains correct value in Props', () => {
+    render(<Icon iconname='fa-regular fa-envelope'/>)
+    const testIcon = document.getElementById('test');
+    expect(testIcon).toHaveClass('fa-regular fa-envelope');
+  });
+
   
