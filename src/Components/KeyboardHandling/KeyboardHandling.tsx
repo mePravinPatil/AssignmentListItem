@@ -1,35 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import "./KeyboardHandling.css";
 
-const KeyboardHandling = () => {
+type ArrayProps = {
+  listArrayItems: string[];
+};
 
-  const [enteredText, setEnteredText] = useState("");
-
-  
-  const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.code === "Enter") {
-      alert(`You have entered "${enteredText}"`);
-    }
-  };
-
-  const keyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.code === "Escape") {
-      const confirm = window.confirm("Are you sure want to clear this text?");
-
-      if (confirm) {
-        setEnteredText("");
-      }
-    }
-  };
+const KeyboardHandling = ({ listArrayItems }: ArrayProps) => {
 
   return (
     <div>
-      <input
-        onKeyDown={keyDownHandler}
-        onKeyUp={keyUpHandler}
-        type="text"
-        value={enteredText}
-        onChange={(e) => setEnteredText(e.target.value)}
-      />
+      <ul>
+        {listArrayItems.map((e, key) => {
+          return <li tabIndex={0} key={key}>{e}</li>
+        })}
+      </ul>
     </div>
   );
 };
