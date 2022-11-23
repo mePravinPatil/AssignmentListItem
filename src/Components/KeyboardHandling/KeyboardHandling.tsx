@@ -1,131 +1,50 @@
-// import { useState } from "react";
-// import "./KeyboardHandling.css";
+import { useState } from "react";
+import "./KeyboardHandling.css";
 
-// type ArrayProps = {
-//   listArrayItems: string[];
-// };
+type ArrayProps = {
+  listArrayItems: {name : string}[];
+};
 
-// const KeyboardHandling = ({ listArrayItems }: ArrayProps) => {
+const KeyboardHandling = ({listArrayItems} : ArrayProps) => {
 
-//   return (
-//     <div>
-//       <ul>
-//         {listArrayItems.map((e, key) => {
-//           return (
-//             <li key={key} className="parent-list">
-//               <ul>
-//                 <li >{e}</li>
-//               </ul>
-//             </li>
-//           );
-//         })}
-//       </ul>
-//     </div>
-//   );
-// };
+let myList = document.getElementById('myList');
 
-// export default KeyboardHandling;
+myList.onkeydown = function(event) {
 
-import React, { useState, useEffect } from "react";
+  var numberOfCells = document.getElementById('myList').getElementsByTagName("ul").length;
+  if (event.keyCode == 38) {
+    console.log('up');
+    document.getElementById(event.target.id).blur()
+    var currentfocus = event.target.id.split('');
+    currentfocus.splice(2, 1, +currentfocus[2]-1);
+    var newfocus = currentfocus.join('');
+    document.getElementById(newfocus).focus();
+  }
+  else if (event.keyCode == 40) {
+    console.log('down');
+    document.getElementById(event.target.id).blur()
+    var currentfocus = event.target.id.split('');
+    currentfocus.splice(2,1, +currentfocus[2]+1);
+    var newfocus = currentfocus.join('');
+    document.getElementById(newfocus).focus();
+  }
+};
 
-const KeyboardHandling = () => {
+  return (
+    <div>
+      <ul id="myList">
+        {listArrayItems.map((e, key) => {
+          return (
+            <li key={key} className="parent-list">
+              <ul>
+                <li >{e.name}</li>
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
-    const useKeyPress = function(targetKey) {
-        const [keyPressed, setKeyPressed] = useState(false);
-      
-        function downHandler({ key }) {
-          if (key === targetKey) {
-            setKeyPressed(true);
-          }
-        }
-      
-        const upHandler = ({ key }) => {
-          if (key === targetKey) {
-            setKeyPressed(false);
-          }
-        };
-      
-        useEffect(() => {
-          window.addEventListener("keydown", downHandler);
-          window.addEventListener("keyup", upHandler);
-      
-          return () => {
-            window.removeEventListener("keydown", downHandler);
-            window.removeEventListener("keyup", upHandler);
-          };
-        });
-      
-        return keyPressed;
-      };
-      
-      const items = [
-        { id: 1, name: "Josh Weir" },
-        { id: 2, name: "Sarah Weir" },
-        { id: 3, name: "Alicia Weir" },
-        { id: 4, name: "Doo Weir" },
-        { id: 5, name: "Grooft Weir" }
-      ];
-      
-      const ListItem = ({ item, active, setSelected, setHovered }) => (
-        <div
-          className={`item ${active ? "active" : ""}`}
-          onClick={() => setSelected(item)}
-          onMouseEnter={() => setHovered(item)}
-          onMouseLeave={() => setHovered(undefined)}
-        >
-          {item.name}
-        </div>
-      );
-
-    const [selected, setSelected] = useState(undefined);
-    const downPress = useKeyPress("ArrowDown");
-    const upPress = useKeyPress("ArrowUp");
-    const enterPress = useKeyPress("Enter");
-    const [cursor, setCursor] = useState(0);
-    const [hovered, setHovered] = useState(undefined);
-  
-    useEffect(() => {
-      if (items.length && downPress) {
-        setCursor(prevState =>
-          prevState < items.length - 1 ? prevState + 1 : prevState
-        );
-      }
-    }, [downPress]);
-    useEffect(() => {
-      if (items.length && upPress) {
-        setCursor(prevState => (prevState > 0 ? prevState - 1 : prevState));
-      }
-    }, [upPress]);
-    useEffect(() => {
-      if (items.length && enterPress) {
-        setSelected(items[cursor]);
-      }
-    }, [cursor, enterPress]);
-    useEffect(() => {
-      if (items.length && hovered) {
-        setCursor(items.indexOf(hovered));
-      }
-    }, [hovered]);
-  
-    return (
-      <div>
-        <p>
-          <small>
-            Use up down keys and hit enter to select, or use the mouse
-          </small>
-        </p>
-        <span>Selected: {selected ? selected.name : "none"}</span>
-        {items.map((item, i) => (
-          <ListItem
-            key={item.id}
-            active={i === cursor}
-            item={item}
-            setSelected={setSelected}
-            setHovered={setHovered}
-          />
-        ))}
-      </div>
-    );
-  };
-  
-  export default KeyboardHandling;
+export default KeyboardHandling;
