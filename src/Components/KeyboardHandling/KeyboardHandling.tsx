@@ -1,45 +1,19 @@
 import React, { useEffect, useState, useReducer } from "react";
 import "./KeyboardHandling.style.ts";
 import List from "./List";
+import { useKeyPress } from "./useKeyPress";
 
-const list:string[] = ["Item One", "Item Two", "Item Three", "Item Four", "Item Five"];
+const list: string[] = [
+  "Item One",
+  "Item Two",
+  "Item Three",
+  "Item Four",
+  "Item Five",
+];
 
-const initialState = { selectedIndex: 0 };
 
-const useKeyPress = (targetKey: string) => {
-  const [keyPressed, setKeyPressed] = useState(false);
 
-  type PropType = {
-    key: string;
-  };
-
-  useEffect(() => {
-    const downHandler = ({ key }: PropType) => {
-      if (key === targetKey) {
-        setKeyPressed(true);
-      }
-    };
-
-    const upHandler = ({ key }: PropType) => {
-      if (key === targetKey) {
-        setKeyPressed(false);
-      }
-    };
-
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, [targetKey]);
-
-  return keyPressed;
-};
-
-const reducer = (state:{selectedIndex:number}, action: any) => {
-  
+const reducer = (state: { selectedIndex: number }, action: any) => {
   switch (action.type) {
     case "arrowUp":
       return {
@@ -51,24 +25,24 @@ const reducer = (state:{selectedIndex:number}, action: any) => {
         selectedIndex:
           state.selectedIndex !== list.length - 1 ? state.selectedIndex + 1 : 0,
       };
-      case "End":
+    case "End":
       return {
-        selectedIndex:
-          state.selectedIndex = list.length - 1,
+        selectedIndex: (state.selectedIndex = list.length - 1),
       };
-      case "Home":
+    case "Home":
       return {
-        selectedIndex:
-          state.selectedIndex = 0,
+        selectedIndex: (state.selectedIndex = 0),
       };
     case "select":
       return { selectedIndex: action.payload };
+
     default:
       throw new Error();
   }
 };
 
- 
+const initialState = { selectedIndex: undefined };
+
 const KeyboardHandling = () => {
   const arrowUpPressed = useKeyPress("ArrowUp");
   const arrowDownPressed = useKeyPress("ArrowDown");
@@ -100,9 +74,7 @@ const KeyboardHandling = () => {
     }
   }, [homePressed]);
 
-  return (
-    <List list={list} state={state} dispatch={dispatch}/>
-  );
+  return <List list={list} state={state} dispatch={dispatch} />;
 };
 
 export default KeyboardHandling;
