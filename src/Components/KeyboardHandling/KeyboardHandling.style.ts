@@ -1,38 +1,39 @@
 import styled, { css } from "styled-components";
 
-export const StyledListItem = styled.li`
+interface ListProps {
+  list: string[];
+  state: { selectedIndex: number };
+  dispatch: any;
+}
 
-cursor: "pointer"
-    border: 1px solid rgb(136, 136, 136);
-    padding-inline-end : 100px;
-    margin : 0px;
+export const StyledDivItem = styled.div`
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid black;
+  display : flex;
+  justify-content: space-between;
+  align-items: baseline;
+  box-shadow: 3px 3px #b6afaf;
+`;
 
-
-
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
- 
-
- 
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-
-
-  
-    
-
-
-  `;
 export const StyledUList = styled.ul`
   list-style: none;
   padding-inline-start: 0px;
 `;
 
-// interface ListProps {
-//   list: string[];
-//   state: { selectedIndex: number };
-//   dispatch: any;
-// }
+export const StyledList = styled.li`
+ margin : 5px;
+`;
+export const StyledImage = styled.img`
+  width: 20px;
+  height: 20px;
+  margin: 5px 0 5px 100px;
+  margin-right: 10px;
+  justify-content: space-between;
+  align-items: baseline;
+  border-radius : 50px;
+`;
 
 // export const getTitleProperty = (
 //   list: string[],
