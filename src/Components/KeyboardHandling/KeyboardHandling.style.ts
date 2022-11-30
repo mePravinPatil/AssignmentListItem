@@ -1,9 +1,8 @@
 import styled, { css } from "styled-components";
 
 interface ListProps {
-  list: string[];
   state: { selectedIndex: number };
-  dispatch: any;
+ 
 }
 
 export const StyledDivItem = styled.div`
@@ -14,7 +13,7 @@ export const StyledDivItem = styled.div`
   display : flex;
   justify-content: space-between;
   align-items: baseline;
-  box-shadow: 3px 3px #b6afaf;
+  // box-shadow: 2px 2px #b6afaf;
 `;
 
 export const StyledUList = styled.ul`
@@ -24,6 +23,7 @@ export const StyledUList = styled.ul`
 
 export const StyledList = styled.li`
  margin : 5px;
+ 
 `;
 export const StyledImage = styled.img`
   width: 20px;
@@ -35,34 +35,22 @@ export const StyledImage = styled.img`
   border-radius : 50px;
 `;
 
-// export const getTitleProperty = (
-//   list: string[],
-//   state: { selectedIndex: number },
-//   dispatch: any
-// ) => {
-//   if (i === state.selectedIndex) {
-//     return css`
-//       cursor: "pointer",
-//       color: "red",
-//       margin : 10px;
-//     padding : 5px;
-//     font-size: x-large;
-//       `;
-//   } else {
-//     return css`
-//       cursor: "pointer",
-//       color: "black",
-//       margin : 10px;
-//     padding : 5px;
-//     font-size: x-large;
-//       `;
-//   }
-// };
+export const getTitleProperty = (i: any, state: { selectedIndex: any; }) => {
+  if(i === state.selectedIndex){
+      return css`
+          border : none;
+          margin : 10px 0 0 0;
+          font-size: 20px;
+          font-weight : bold;
+      `;
+  }else{
+      return css`
+          border : none;
+          margin : 5px 0 0 0;
+      `;
+  }
+}
 
-// export const StyledList = styled.ul<ListProps>`
-//   ${({ list,
-//     state,
-//     dispatch}) => getTitleProperty(list,
-//       state,
-//       dispatch)};
-// `;
+export const StyledList = styled.li<ListProps>`
+${({i, state.selectedIndex})=>getTitleProperty(isTitle)};
+`
