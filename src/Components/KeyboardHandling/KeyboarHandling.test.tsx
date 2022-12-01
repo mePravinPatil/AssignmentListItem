@@ -6,9 +6,8 @@ describe("The keyboard handling component", () => {
     render(<KeyboardHandling />);
   });
 
-  test("Icon contains correct value in Props", () => {
+  test("list contains correct value", () => {
     render(<KeyboardHandling />);
     const Screentext = document.getElementsByTagName("List");
     expect(Screentext).toBeInTheDocument();
   });
-});
