@@ -33,7 +33,7 @@ const reducer = (state: { selectedIndex: number }, action: any) => {
       };
     case "select":
       return { selectedIndex: action.payload };
-          default:
+    default:
       throw new Error();
   }
 };
@@ -48,21 +48,39 @@ const KeyboardHandling = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-  if (arrowUpPressed) {
-        dispatch({ type: "arrowUp" });
-      } else  if (arrowDownPressed) {
-            dispatch({ type: "arrowDown" });
-          } else  if (endPressed) {
-                dispatch({ type: "End" });
-              } else if (homePressed) {
-                    dispatch({ type: "Home" });
-                  }
-    }, [arrowUpPressed, arrowDownPressed, endPressed, homePressed]);
+    const keys =
+      arrowUpPressed || arrowDownPressed || endPressed || homePressed;
+      console.log('keypresed')
 
-  return (<List list={list} state={state} dispatch={dispatch}  />
- );
+    switch (keys) {
+      case arrowUpPressed:
+        {
+        dispatch({ type: "arrowUp" });
+        }
+        break;
+
+      case arrowDownPressed:
+        {
+        dispatch({ type: "arrowDown" });
+        }
+        break;
+
+      case endPressed:
+        {
+        dispatch({ type: "End" });
+        }
+        break;
+
+      case homePressed:
+        {
+        dispatch({ type: "Home" });
+        }
+        break;
+    }
+
+  }, [arrowUpPressed, arrowDownPressed, endPressed, homePressed]);
+
+  return <List list={list} state={state} dispatch={dispatch} />;
 };
 
 export default KeyboardHandling;
-
-
